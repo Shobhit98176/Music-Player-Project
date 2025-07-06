@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Music Player with Slider | Swiper JS By Shobhit Pal</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css'>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+    <div class="album-cover">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <!-- Jack sparrow  -->
+            <img
+              src="https://tse4.mm.bing.net/th/id/OIP.GFpix1Hm-9gcD77pCrO1aQHaNK?r=0&pid=ImgDet&w=474&h=842&rs=1&o=7&rm=3" />
+            <div class="overlay">
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <!-- Bella Ciao -->
+            <img
+              src="https://is.zobj.net/image-server/v1/images?r=hGdIA2w-4Daw1XRJ8DPf6dWG7j-Cjp5XWAq8MW5scivxmMkn94d5LH0y_suRClALDtlDjTov-TaT6DCr5XqtUnw9oU8u9eDwYiSQ9xAq0wF_muUHjJ7KDNon2ZHWwv1p3T46DfupFGshYp3OD-7HikhxNB7j38W9AUMHvL9J3cdKuAHlOaKzIaWUCtmaVBDN_0P1z5LoE4AtK3qOTYLnhIwDf1dQtmIqWh-BWkiXuWGd2Rf75O2vCJttNH0" />
+            </div>
+          <div class="swiper-slide">
+            <!-- Piano Instrumental -->
+            <img
+              src="https://img.freepik.com/premium-photo/anime-character-playing-piano_1203138-8010.jpg" />
+            <div class="overlay">
+           </div>
+          </div>
+          <div class="swiper-slide">
+         <!-- Guitar Instrumental -->
+
+            <img
+              src="https://i.pinimg.com/736x/04/db/7f/04db7fc85458d42e6807d78728db39d0.jpg" />
+            <div class="overlay">
+              </div>
+          </div>
+          <div class="swiper-slide">
+            <!-- Headphone  -->
+            <img
+              src="https://png.pngtree.com/background/20230626/original/pngtree-musical-nft-concept-3d-rendered-neon-headphone-icon-with-music-notes-picture-image_4055862.jpg" />
+            <div class="overlay">
+             
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <!-- Instru Image -->
+            <img
+              src="https://i.ytimg.com/vi/y9pumF5Ad7w/maxresdefault.jpg" />
+            <div class="overlay">
+            
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <!-- Birds  -->
+            <img
+              src="https://th.bing.com/th/id/R.06b7be3e0977b680ca4105ac0ed30479?rik=5tKDwQitmM%2fwug&riu=http%3a%2f%2falldiamondpainting.com%2fcdn%2fshop%2ffiles%2fLoveBirdsonValentine_sDay-PaintingByDiamonds.jpg%3fv%3d1718958688&ehk=1NkstqjoazxNc1zye0SAQl%2b1xkB6LIXOQ8NAiwRVVZM%3d&risl=&pid=ImgRaw&r=0" />
+            <div class="overlay">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="music-player">
+      <h1>Title</h1>
+      <p>Song Name</p>
+
+      <audio id="song" preload="metadata">
+        <source src="Jack sparrow.mp3" type="audio/mp3" />
+      </audio>
+      <div class="duration">
+  <span id="currentTime">00:00</span> / <span id="totalTime">00:00</span>
+</div>
+
+  
+      <input type="range" value="0" id="progress" /> 
+       <label for="volumeControl">🔊</label>
+            <input type="range" id="volumeControl" min="0" max="100" step="1" value="100">
+          
+
+      <div class="controls">
+        <button class="backward">
+          <i class="fa-solid fa-backward"></i>
+        </button>
+        <button class="play-pause-btn">
+          <i class="fa-solid fa-play" id="controlIcon"></i>
+        </button>
+        <button class="forward">
+          <i class="fa-solid fa-forward"></i>
+        </button>
+      </div>
+    </div>
+  </body>
+
+<!-- partial -->
+<script src='https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js'></script>
+<script src='https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js'></script>
+<script src='https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js'></script><script  src="./script.js"></script>
+ <script>
+    const audio = document.getElementById('song');
+    const volumeSlider = document.getElementById('volumeControl');
+
+    volumeSlider.addEventListener('input', function () {
+      audio.volume = this.value/100;
+    });
+  </script>
+  <script>
+  const audio = document.getElementById('song');
+  const currentTimeDisplay = document.getElementById('currentTime');
+  const totalTimeDisplay = document.getElementById('totalTime');
+
+  // Format seconds to MM:SS
+  function formatTime(time) {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  }
+
+  // Show total duration once audio is ready
+  audio.addEventListener('loadedmetadata', function () {
+    totalTimeDisplay.textContent = formatTime(audio.duration);
+  });
+
+  // Update current playing time
+  audio.addEventListener('timeupdate', function () {
+    currentTimeDisplay.textContent = formatTime(audio.currentTime);
+  });
+</script>
+
+
+</body>
+</html>
